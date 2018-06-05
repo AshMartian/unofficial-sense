@@ -1,6 +1,6 @@
 {
   "name": "unofficial-sense",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Unofficial sense api integration",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,6 @@
   "author": "Brandon Martin",
   "license": "MIT",
   "dependencies": {
-    "fetch": "^1.1.0",
     "node-fetch": "^2.1.2",
     "ws": "^5.2.0"
   }
