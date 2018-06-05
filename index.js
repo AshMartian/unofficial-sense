@@ -51,11 +51,7 @@ module.exports = async (config, onData) => {
             getDevices: async () => {
                 return new Promise( async (resolve, reject) => {
                     const devices = (await (await fetch(`${apiURL}app/monitors/${authInfo.monitors[0].id}/devices`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
-                    const deviceData = (await (await fetch(`${apiURL}monitors/${authInfo.monitors[0].id}/devices`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
-                    resolve({
-                        devices: devices,
-                        data: deviceData
-                    })
+                    resolve(devices)
                 })
             },
             getMonitorInfo: async () => {

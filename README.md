@@ -245,117 +245,7 @@ All functions return promises containing the following data
 
 This will retreive all learned devices and the data on those devices with the following format
 ```
-{
-  "devices": [
-    {
-      "id": "xxxxxxxx",
-      "name": "Microwave",
-      "icon": "microwave",
-      "tags": {
-        "Alertable": "true",
-        "AlwaysOn": "false",
-        "DateFirstUsage": "2017-10-18",
-        "DefaultUserDeviceType": "Microwave",
-        "DeployToMonitor": "true",
-        "DeviceListAllowed": "true",
-        "Mature": "true",
-        "ModelCreatedVersion": "10",
-        "name_useredit": "false",
-        "OriginalName": "Microwave",
-        "PeerNames": [
-          {
-            "Name": "Microwave",
-            "UserDeviceType": "Microwave",
-            "Percent": 100,
-            "Icon": "microwave",
-            "UserDeviceTypeDisplayString": "Microwave"
-          }
-        ],
-        "Pending": "false",
-        "PreselectionIndex": 0,
-        "Revoked": "false",
-        "TimelineAllowed": "true",
-        "TimelineDefault": "true",
-        "Type": "Microwave",
-        "user_editable": "true",
-        "UserDeviceType": "Microwave",
-        "UserDeviceTypeDisplayString": "Microwave",
-        "UserEditable": "true"
-      }
-    },
-    {
-      "id": "xxxxxxxx",
-      "name": "Stove 2",
-      "icon": "stove",
-      "tags": {
-        "Alertable": "true",
-        "AlwaysOn": "false",
-        "DateFirstUsage": "2017-10-19",
-        "DefaultUserDeviceType": "StoveTop",
-        "DeployToMonitor": "true",
-        "DeviceListAllowed": "false",
-        "Mature": "true",
-        "ModelCreatedVersion": "12",
-        "name_useredit": "false",
-        "OriginalName": "Stove 2",
-        "PeerNames": [
-          {
-            "Name": "Stove",
-            "UserDeviceType": "StoveTop",
-            "Percent": 9000,
-            "Icon": "stove",
-            "UserDeviceTypeDisplayString": "Stove Top"
-          }
-        ],
-        "Pending": "false",
-        "PreselectionIndex": 0,
-        "Revoked": "true",
-        "TimelineAllowed": "false",
-        "TimelineDefault": "true",
-        "Type": "Stove",
-        "user_editable": "false",
-        "UserDeviceType": "StoveTop",
-        "UserDeviceTypeDisplayString": "Stove Top",
-        "UserEditable": "false"
-      }
-    },
-    {
-      "id": "xxxxxxxx",
-      "name": "Washer",
-      "icon": "dishes",
-      "tags": {
-        "Alertable": "true",
-        "AlwaysOn": "false",
-        "DateFirstUsage": "2017-10-19",
-        "DefaultUserDeviceType": "Washer",
-        "DeployToMonitor": "true",
-        "DeviceListAllowed": "true",
-        "Mature": "true",
-        "ModelCreatedVersion": "8",
-        "name_useredit": "false",
-        "OriginalName": "Washer",
-        "PeerNames": [
-          {
-            "Name": "Washer",
-            "UserDeviceType": "Washer",
-            "Percent": 96,
-            "Icon": "dishes",
-            "UserDeviceTypeDisplayString": "Washer"
-          }
-        ],
-        "Pending": "false",
-        "PreselectionIndex": 0,
-        "Revoked": "false",
-        "TimelineAllowed": "true",
-        "TimelineDefault": "true",
-        "Type": "WashingMachine",
-        "user_editable": "true",
-        "UserDeviceType": "Washer",
-        "UserDeviceTypeDisplayString": "Washer",
-        "UserEditable": "true"
-      }
-    } ...
-    "data": [
+[
     {
       "id": "xxxxxxx",
       "name": "Microwave",
@@ -461,8 +351,7 @@ This will retreive all learned devices and the data on those devices with the fo
         "UserEditable": "true"
       }
     } ...
-  ]
-}
+]
 ```
 ### *getMonitorInfo()*
 

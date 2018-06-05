@@ -1,6 +1,6 @@
 {
   "name": "unofficial-sense",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Unofficial sense api integration",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/blandman/unnoficial-sense"
+    "url": "https://github.com/blandman/unofficial-sense"
   },
   "keywords": [
     "sense",
