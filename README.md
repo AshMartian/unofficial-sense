@@ -244,10 +244,12 @@ Or you can try the following
 })
 ```
 
-### *events.on('data')*
-Use this to subscribe to realtime updates, use this instead of the callback function. 
-
 All functions return promises containing the following data
+
+### *events.on('data')*
+Use this to subscribe to realtime updates (see above for data example), use this instead of the callback function. 
+
+
 ### *getDevices()*
 
 This will retreive all learned devices and the data on those devices with the following format
