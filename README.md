@@ -244,7 +244,7 @@ Or you can try the following
 })
 ```
 
-### *events.on('data')
+### *events.on('data')*
 Use this to subscribe to realtime updates, use this instead of the callback function. 
 
 All functions return promises containing the following data
