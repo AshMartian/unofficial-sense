@@ -33,49 +33,51 @@ const setupWS = (onData) => {
 }
 
 module.exports = async (config, onData) => {
-    if(!config.email || !config.password) {
-        throw new Error('Config missing required parameters, needs email and password (optional base64)')
-    }
-    if(Buffer.from(config.password, 'base64').toString('base64') === config.password) {
-        config.password = Buffer.from(config.password, 'base64')
-    }
-
-    let authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
-    console.log(authData);
-    if(authData.authorized) {
-        authInfo = authData;
-        if(typeof onData == 'function') {
-            onData({
-                status: 'Authenticated',
-                data: authData.monitors
-            })
+    return new Promise( (resolve, reject) => {
+        if(!config.email || !config.password) {
+            throw new Error('Config missing required parameters, needs email and password (optional base64)')
         }
-        setupWS(onData);
-        return {
-            events: emmitter,
-            getDevices: async () => {
-                return new Promise( async (resolve, reject) => {
-                    const devices = (await (await fetch(`${apiURL}app/monitors/${authInfo.monitors[0].id}/devices`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
-                    resolve(devices)
-                })
-            },
-            getMonitorInfo: async () => {
-                return new Promise( async (resolve, reject) => {
-                    const monitor = (await (await fetch(`${apiURL}app/monitors/${authInfo.monitors[0].id}/status`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
-                    resolve(monitor)
-                })
-            },
-            getTimeline: async () => {
-                return new Promise( async (resolve, reject) => {
-                    const user = (await (await fetch(`${apiURL}users/${authInfo.user_id}/timeline`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
-                    resolve(user)
+        if(Buffer.from(config.password, 'base64').toString('base64') === config.password) {
+            config.password = Buffer.from(config.password, 'base64')
+        }
+
+        let authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
+        //console.log(authData);
+        if(authData.authorized) {
+            authInfo = authData;
+            if(typeof onData == 'function') {
+                onData({
+                    status: 'Authenticated',
+                    data: authData.monitors
                 })
             }
+            setupWS(onData);
+            resolve({
+                events: emmitter,
+                getDevices: async () => {
+                    return new Promise( async (resolve, reject) => {
+                        const devices = (await (await fetch(`${apiURL}app/monitors/${authInfo.monitors[0].id}/devices`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
+                        resolve(devices)
+                    })
+                },
+                getMonitorInfo: async () => {
+                    return new Promise( async (resolve, reject) => {
+                        const monitor = (await (await fetch(`${apiURL}app/monitors/${authInfo.monitors[0].id}/status`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
+                        resolve(monitor)
+                    })
+                },
+                getTimeline: async () => {
+                    return new Promise( async (resolve, reject) => {
+                        const user = (await (await fetch(`${apiURL}users/${authInfo.user_id}/timeline`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
+                        resolve(user)
+                    })
+                }
+            })
+        } else if(authData.status == 'error') {
+            reject(new Error(authData.error_reason));
+        } else {
+            reject(new Error('Unable to make auth request'));
         }
-    } else if(authData.status == 'error') {
-        throw new Error(authData.error_reason);
-    } else {
-        throw new Error('Unable to make auth request');
-    }
+    });
 }
 
