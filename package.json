@@ -1,6 +1,6 @@
 {
   "name": "unofficial-sense",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Unofficial sense api integration",
   "main": "index.js",
   "scripts": {
@@ -13,9 +13,10 @@
   "keywords": [
     "sense",
     "api",
-    "unnofficial",
+    "unofficial",
     "home",
-    "energy"
+    "energy",
+    "monitor"
   ],
   "author": "Brandon Martin",
   "license": "MIT",

@@ -211,6 +211,7 @@ The callback (optional) will be called anytime data updates from the Sense webso
 
 To get more information, you may need to access the following functions exposed by the promise resolver of the sense function.
 
+- events.on('data')
 - getDevices
 - getMonitorInfo
 - getTimeline
@@ -237,8 +238,14 @@ Or you can try the following
     const deviceInfo = await mySense.getDevices()
     const monitorInfo = await mySense.getMonitorInfo()
     const timeline = await mySense.getTimeline()
+    mySense.events.on('data', (data) => {
+      console.log(data);
+    })
 })
 ```
+
+### *events.on('data')
+Use this to subscribe to realtime updates, use this instead of the callback function. 
 
 All functions return promises containing the following data
 ### *getDevices()*

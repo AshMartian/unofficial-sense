@@ -1,8 +1,11 @@
-const fetch = require('node-fetch'), ws = require('ws')
+const fetch = require('node-fetch'), ws = require('ws'), EventEmitter = require('events');
+
 
 const apiURL = 'https://api.sense.com/apiservice/api/v1/'
 
 var authInfo = {};
+
+var emmitter = new EventEmitter();
 
 const setupWS = (onData) => {
     const sendData = typeof onData == 'function'
@@ -17,6 +20,7 @@ const setupWS = (onData) => {
         }
     });
     senseWS.on('message', (data) => {
+        emmitter.emit('data', JSON.parse(data));
         if(sendData) {
             onData({
                 status: "Received",
@@ -48,6 +52,7 @@ module.exports = async (config, onData) => {
         }
         setupWS(onData);
         return {
+            events: emmitter,
             getDevices: async () => {
                 return new Promise( async (resolve, reject) => {
                     const devices = (await (await fetch(`${apiURL}app/monitors/${authInfo.monitors[0].id}/devices`, { method: 'GET', headers: {"Authorization": `bearer ${authInfo.access_token}`} })).json())
