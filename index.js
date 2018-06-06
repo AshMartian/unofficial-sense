@@ -33,7 +33,7 @@ const setupWS = (onData) => {
 }
 
 module.exports = async (config, onData) => {
-    return new Promise( (resolve, reject) => {
+    return new Promise( async (resolve, reject) => {
         if(!config.email || !config.password) {
             throw new Error('Config missing required parameters, needs email and password (optional base64)')
         }
