@@ -229,6 +229,9 @@ sense({...}).then((mySense) => {
     mySense.getTimeline().then(timeline => {
         console.log(timeline);
     })
+    mySense.events.on('data', (data) => {
+      console.log(data);
+    })
 })
 ```
 Or you can try the following
