@@ -1,6 +1,6 @@
 {
   "name": "unofficial-sense",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Unofficial sense api integration",
   "main": "index.js",
   "scripts": {

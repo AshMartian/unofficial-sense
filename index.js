@@ -31,9 +31,6 @@ const setupWS = (onData) => {
 }
 var authData = {};
 module.exports = async (config, onData) => {
-    var getAuth = async () => {
-        return await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
-    }
     return new Promise( async (resolve, reject) => {
         if(!config.email || !config.password) {
             throw new Error('Config missing required parameters, needs email and password (optional base64)')
@@ -42,9 +39,9 @@ module.exports = async (config, onData) => {
             config.password = Buffer.from(config.password, 'base64')
         }
 
-        authData = await getAuth();
-        setInterval(() => {
-            authData = await getAuth();
+        authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
+        setInterval(async () => {
+            authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
         }, 900000)
         //console.log(authData);
         if(authData.authorized) {
@@ -56,7 +53,10 @@ module.exports = async (config, onData) => {
             }
             setupWS(onData);
             resolve({
-                getAuth: getAuth,
+                getAuth: async () => {
+                    authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()   
+                    return authData
+                },
                 events: emmitter,
                 getDevices: async () => {
                     return new Promise( async (resolve, reject) => {
