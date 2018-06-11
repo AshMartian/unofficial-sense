@@ -5,10 +5,12 @@ const apiURL = 'https://api.sense.com/apiservice/api/v1/'
 
 var emmitter = new EventEmitter();
 
+var senseWS = null;
+
 const setupWS = (onData) => {
     const sendData = typeof onData == 'function'
     let WSURL = `wss://clientrt.sense.com/monitors/${authData.monitors[0].id}/realtimefeed?access_token=${authData.access_token}`
-    const senseWS = new ws(WSURL)
+    senseWS = new ws(WSURL)
 
     senseWS.on('open', () => {
         if(sendData) {
@@ -42,6 +44,7 @@ module.exports = async (config, onData) => {
         authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
         setInterval(async () => {
             authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
+            setupWS(onData)
         }, 900000)
         //console.log(authData);
         if(authData.authorized) {
@@ -55,6 +58,7 @@ module.exports = async (config, onData) => {
             resolve({
                 getAuth: async () => {
                     authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()   
+                    setupWS(onData)
                     return authData
                 },
                 events: emmitter,
