@@ -2,6 +2,8 @@
 
 This is an UNOFFICIAL implimentation of the Sense Home Energy Monitoring API using es6 and promises with real time support.
 
+This has also been integrated into a node-red module, see it [here](https://flows.nodered.org/node/node-red-contrib-unofficial-sense).
+
 ## Installation
 
 `npm install unofficial-sense`
