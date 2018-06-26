@@ -26,7 +26,7 @@ The callback (optional) will be called anytime data updates from the Sense webso
 ### Authenticated
 ```json
 {
-    "status": "Authenticated":
+    "status": "Authenticated"
     "data": { authorized: true,
         account_id: xxxxx,
         user_id: xxxxx,
@@ -364,12 +364,12 @@ This will retreive all learned devices and the data on those devices with the fo
         "UserDeviceTypeDisplayString": "Washer",
         "UserEditable": "true"
       }
-    } ...
+    } 
 ]
 ```
 ### *getMonitorInfo()*
 
-```
+```json
 {
   "signals": {
     "progress": 100,
@@ -391,7 +391,7 @@ This will retreive all learned devices and the data on those devices with the fo
         "icon": "stove",
         "name": "Possible Oven",
         "progress": 10
-      } ...
+      } 
     ],
     "found": [
       {
@@ -408,7 +408,7 @@ This will retreive all learned devices and the data on those devices with the fo
         "icon": "home",
         "name": "Motor",
         "progress": 96
-      } ...
+      }
     ],
     "num_detected": 18
   },
@@ -425,7 +425,7 @@ This will retreive all learned devices and the data on those devices with the fo
 ```
 
 ### *getTimeline()*
-```
+```json
 {
   "more_items": true,
   "sticky_items": [
@@ -584,7 +584,7 @@ This will retreive all learned devices and the data on those devices with the fo
       "location": "Bathroom",
       "guid": "b7c01d78-5276-41ea-9413-cdbac06e5647",
       "user_device_type": "MysteryHeat"
-    } ...
+    } 
   ]
 }
 ```
