@@ -10,7 +10,7 @@ This has also been integrated into a node-red module, see it [here](https://flow
 
 ## Usage
 
-```
+```javascript
 const sense = require('unofficial-sense')
 
 sense({
@@ -24,7 +24,7 @@ sense({
 
 The callback (optional) will be called anytime data updates from the Sense websocket. There are two status types that will be returned in this callback
 ### Authenticated
-```
+```json
 {
     "status": "Authenticated":
     "data": { authorized: true,
@@ -46,7 +46,7 @@ The callback (optional) will be called anytime data updates from the Sense webso
 }
 ```
 ### Recevied
-```
+```json
 {
     "status": "Received",
     "data": {
@@ -220,7 +220,7 @@ To get more information, you may need to access the following functions exposed 
 
 ### Using These functions 
 (Don't forget to pass email/password object)
-```
+```javascript
 sense({...}).then((mySense) => {
     mySense.getDevices().then(devices => {
         console.log(devices);
@@ -237,7 +237,7 @@ sense({...}).then((mySense) => {
 })
 ```
 Or you can try the following
-```
+```javascript
 (async () => {
     const mySense = await sense({...})
     const deviceInfo = await mySense.getDevices()
@@ -258,7 +258,7 @@ Use this to subscribe to realtime updates (see above for data example), use this
 ### *getDevices()*
 
 This will retreive all learned devices and the data on those devices with the following format
-```
+```json
 [
     {
       "id": "xxxxxxx",
