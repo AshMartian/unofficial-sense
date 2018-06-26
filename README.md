@@ -31,18 +31,18 @@ The callback (optional) will be called anytime data updates from the Sense webso
         "authorized": true,
         "account_id": "xxxxx",
         "user_id": "xxxxx",
-        "access_token": 'token',
+        "access_token": "token",
         "monitors":
         [ { "id": "xxxxx",
-            "time_zone": 'America/Los_Angeles',
+            "time_zone": "America/Los_Angeles",
             "solar_connected": false,
             "solar_configured": false,
             "online": false,
             "attributes": [Object],
-            "signal_check_completed_time": '2017-10-17T23:51:23.000Z' } ],
-        "bridge_server": 'wss://mb1.home.sense.com',
+            "signal_check_completed_time": "2017-10-17T23:51:23.000Z" } ],
+        "bridge_server": "wss://mb1.home.sense.com",
         "partner_id": null,
-        "date_created": '2017-10-17T23:52:37.000Z' 
+        "date_created": "2017-10-17T23:52:37.000Z"
     }
 }
 ```
