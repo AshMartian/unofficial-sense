@@ -26,8 +26,9 @@ The callback (optional) will be called anytime data updates from the Sense webso
 ### Authenticated
 ```json
 {
-    "status": "Authenticated"
-    "data": { authorized: true,
+    "status": "Authenticated",
+    "data": { 
+        authorized: true,
         account_id: xxxxx,
         user_id: xxxxx,
         access_token: 'token',
