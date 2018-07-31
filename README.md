@@ -23,7 +23,8 @@ sense({
 })
 ```
 
-The callback (optional) will be called anytime data updates from the Sense websocket. There are two status types that will be returned in this callback
+The callback (optional) will be called anytime data updates from the Sense websocket. There are two (or more) status types that will be returned in this callback. Sense will also send data pertaining to new devices discovered and notifications. Those have been seen but not captured/documented.
+
 ### Authenticated
 ```json
 {
