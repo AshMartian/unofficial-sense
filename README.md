@@ -15,7 +15,8 @@ const sense = require('unofficial-sense')
 
 sense({
     email: "email",
-    password: "password plain text or base64"
+    password: "password plain text or base64",
+    verbose: true //optional
 }, (data) => {
     console.log(data) 
     //real time data stream from your sense monitor
