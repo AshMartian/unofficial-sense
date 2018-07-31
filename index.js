@@ -37,8 +37,8 @@ module.exports = async (config, onData) => {
         if(!config.email || !config.password) {
             throw new Error('Config missing required parameters, needs email and password (optional base64)')
         }
-        if(Buffer.from(config.password, 'base64').toString('base64') === config.password) {
-            config.password = Buffer.from(config.password, 'base64')
+        if(Buffer.from(config.password).toString('base64') === config.password) {            
+            config.password = Buffer.from(config.password.toString('base64'))            
         }
 
         authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
