@@ -7,6 +7,8 @@ var emmitter = new EventEmitter();
 
 var senseWS = null;
 
+var verbose = true;
+
 const setupWS = (onData) => {
     const sendData = typeof onData == 'function'
     let WSURL = `wss://clientrt.sense.com/monitors/${authData.monitors[0].id}/realtimefeed?access_token=${authData.access_token}`
@@ -27,7 +29,7 @@ const setupWS = (onData) => {
                 data: JSON.parse(data)
             })
         } else {
-            console.log(data);
+            if (verbose){console.log(data);}
         }
     })
 }
@@ -40,6 +42,7 @@ module.exports = async (config, onData) => {
         if(Buffer.from(config.password).toString('base64') === config.password) {            
             config.password = Buffer.from(config.password.toString('base64'))            
         }
+        if (config.verbose != undefined){verbose = config.verbose};
 
         authData = await (await fetch(`${apiURL}authenticate`, { method: 'POST', body: `email=${config.email}&password=${config.password}`, headers: {"Content-Type":"application/x-www-form-urlencoded"} })).json()
         setInterval(async () => {
