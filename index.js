@@ -31,7 +31,15 @@ const setupWS = (onData) => {
         } else {
             if (verbose){console.log(data);}
         }
-    })
+    });
+    senseWS.onclose = (data) => {
+        emmitter.emit('close', data);
+        if (verbose){console.log("Connection closed: " + data);}
+     };
+    senseWS.onerror = (data) => {
+        emmitter.emit('error',data);
+        if (verbose){console.log("Error: " + data);}
+    };
 }
 var authData = {};
 module.exports = async (config, onData) => {
@@ -39,8 +47,8 @@ module.exports = async (config, onData) => {
         if(!config.email || !config.password) {
             throw new Error('Config missing required parameters, needs email and password (optional base64)')
         }
-        if(Buffer.from(config.password).toString('base64') === config.password) {            
-            config.password = Buffer.from(config.password.toString('base64'))            
+        if(Buffer.from(config.password).toString('base64') === config.password) {
+            config.password = Buffer.from(config.password.toString('base64'))
         }
         if (config.verbose != undefined){verbose = config.verbose};
 
