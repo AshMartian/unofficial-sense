@@ -85,10 +85,8 @@ module.exports = async (config, onData) => {
                 }
             })
         } else if(authData.status == 'error') {
-            emmitter.emit('error', authData.error_reason);
             reject(new Error(authData.error_reason));
         } else {
-            emmitter.emit('error', 'Unable to make auth request');
             reject(new Error('Unable to make auth request'));
         }
     });
